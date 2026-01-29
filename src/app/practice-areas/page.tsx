@@ -43,7 +43,7 @@ const practiceAreas = [
   },
   {
     title: "Private Sector Audits & Compliance",
-    description: "Comprehensive audit services for private enterprises",
+    description: "Comprehensive audit for private enterprises",
     link: "/practice-areas/private-sector"
   },
   {
@@ -59,9 +59,6 @@ export default function Page() {
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold text-slate-900 mb-6">Our Practice Areas</h1>
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-          Comprehensive audit, assurance, and consulting services across diverse sectors and industries.
-        </p>
       </div>
 
       {/* Practice Areas Grid */}
@@ -100,19 +97,7 @@ export default function Page() {
         ))}
       </div>
 
-      {/* CTA Section */}
-      <div className="mt-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-8 text-center text-white">
-        <h2 className="text-2xl font-bold mb-4">Need Custom Solutions?</h2>
-        <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-          Our team can provide tailored audit and consulting services to meet your specific business requirements.
-        </p>
-        <a 
-          href="/contact"
-          className="inline-flex items-center justify-center bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors"
-        >
-          Get in Touch
-        </a>
-      </div>
+      
     </div>
   );
 }

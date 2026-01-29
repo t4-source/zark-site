@@ -80,7 +80,7 @@ export default function Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-slate-800 mb-2">Private Sector Audits</h3>
-              <p className="text-slate-600 text-sm">Comprehensive audit services for private enterprises</p>
+              <p className="text-slate-600 text-sm">Comprehensive audit for private enterprises</p>
             </div>
           </div>
 

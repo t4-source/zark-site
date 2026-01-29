@@ -14,8 +14,8 @@ export default function AdminLayout({
   const pathname = usePathname();
 
   useEffect(() => {
-    // Skip auth check for login page
-    if (pathname === '/admin/login') {
+    // Skip auth check for login page (handle optional trailing slash)
+    if (pathname === '/admin/login' || pathname === '/admin/login/') {
       setIsLoading(false);
       return;
     }
@@ -23,10 +23,10 @@ export default function AdminLayout({
     // Check authentication via API
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/admin/verify');
+        const response = await fetch('/api/admin/verify', { credentials: 'include' });
         const data = await response.json();
         
-        if (data.authenticated) {
+        if (response.ok && data.authenticated) {
           setIsAuthenticated(true);
         } else {
           router.push('/admin/login');
@@ -41,8 +41,8 @@ export default function AdminLayout({
     checkAuth();
   }, [router, pathname]);
 
-  // Skip layout for login page
-  if (pathname === '/admin/login') {
+  // Skip layout for login page (handle optional trailing slash)
+  if (pathname === '/admin/login' || pathname === '/admin/login/') {
     return <>{children}</>;
   }
 

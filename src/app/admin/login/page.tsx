@@ -15,7 +15,7 @@ export default function LoginPage() {
     }
   }, []);
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-sky-50">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full space-y-8">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
@@ -38,6 +38,7 @@ export default function LoginPage() {
                     const response = await fetch('/api/admin/login', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
+                      credentials: 'include',
                       body: JSON.stringify({
                         username: formData.get('username'),
                         password: formData.get('password')

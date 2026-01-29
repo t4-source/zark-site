@@ -2,25 +2,30 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import CountUp from "react-countup";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [activeSuccessIdx, setActiveSuccessIdx] = useState(0);
+  const [activePracticeIdx, setActivePracticeIdx] = useState(0);
+  const [activeImpactIdx, setActiveImpactIdx] = useState(0);
   const testimonials = [
     {
       name: "Rajesh Kumar",
-      quote: "Z A R K & CO has been instrumental in streamlining our financial processes. Their expertise in audit and compliance has given us complete peace of mind."
+      quote: "K RAGHAV & ASSOCIATES has been instrumental in streamlining our financial processes. Their expertise in audit and compliance has given us complete peace of mind."
     },
     {
       name: "Priya Sharma", 
-      quote: "The cybersecurity consulting provided by Z A R K & CO helped us secure our digital infrastructure. Their team's knowledge and professionalism are unmatched."
+      quote: "The cybersecurity consulting provided by K RAGHAV & ASSOCIATES helped us secure our digital infrastructure. Their team's knowledge and professionalism are unmatched."
     },
     {
       name: "Amit Patel",
-      quote: "Their tax planning strategies have saved us significant amounts while ensuring full compliance. Z A R K & CO's expertise is truly valuable."
+      quote: "Their tax planning strategies have saved us significant amounts while ensuring full compliance. K RAGHAV & ASSOCIATES' expertise is truly valuable."
     },
     {
       name: "Dr. Sunita Verma",
-      quote: "The comprehensive audit services provided by Z A R K & CO have helped us maintain the highest standards of financial transparency and governance."
+      quote: "The comprehensive audit services provided by K RAGHAV & ASSOCIATES have helped us maintain the highest standards of financial transparency and governance."
     }
   ];
 
@@ -31,6 +36,27 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, [testimonials.length]);
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      setActiveSuccessIdx((prev) => (prev + 1) % 4);
+    }, 1700);
+    return () => clearInterval(ticker);
+  }, []);
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      setActivePracticeIdx((prev) => (prev + 1) % 3);
+    }, 1900);
+    return () => clearInterval(ticker);
+  }, []);
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      setActiveImpactIdx((prev) => (prev + 1) % 3);
+    }, 1800);
+    return () => clearInterval(ticker);
+  }, []);
 
   const showTestimonial = (index: number) => {
     setCurrentTestimonial(index);
@@ -43,7 +69,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <Image
             src="/audit-inspector-documents.jpg"
-            alt="Z A R K & CO Background"
+            alt="K RAGHAV & ASSOCIATES Background"
             fill
             className="object-cover scale-100"
             priority
@@ -56,7 +82,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Z A R K & CO
+                K RAGHAV & ASSOCIATES
               </h1>
               <p className="mt-6 text-xl text-blue-100">
                 Chartered Accountants with three decades of expertise in audit, assurance, consulting, and cybersecurity across public and private sectors.
@@ -84,45 +110,43 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+            {[
+              { title: "Why Us", iconBg: "bg-blue-100", iconColor: "text-blue-600", path: "M13 10V3L4 14h7v7l9-11h-7z", glow: "bg-blue-500/35", desc: "We offer support services that can free up management to concentrate on important aspects of their business." },
+              { title: "Proven Experience", iconBg: "bg-green-100", iconColor: "text-green-600", path: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", glow: "bg-green-500/35", desc: "We have proven experience of managing end to end finance and accounts processes from initial invoicing till payment." },
+              { title: "Business Intelligence", iconBg: "bg-purple-100", iconColor: "text-purple-600", path: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z", glow: "bg-purple-500/35", desc: "We turn numbers into actionable business intelligence - building a better picture offering better finance." },
+              { title: "Future Planning", iconBg: "bg-orange-100", iconColor: "text-orange-600", path: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6", glow: "bg-orange-500/35", desc: "We explore ideas and help you plan for a more profitable future wherever you are in your business lifecycle." }
+            ].map((item, idx) => {
+              const isActive = activeSuccessIdx === idx;
+              return (
+                <motion.div
+                  key={item.title}
+                  className="text-center"
+                  animate={isActive ? { scale: 1.03 } : { scale: 1 }}
+                  transition={{ scale: { type: "spring", stiffness: 260, damping: 22 } }}
+                >
+                  <div className={`relative w-16 h-16 ${item.iconBg} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                    <motion.div
+                      aria-hidden
+                      className={`absolute -inset-4 ${item.glow} rounded-full blur-2xl`}
+                      animate={isActive ? { opacity: [0.7, 0.25, 0.7], scale: [1, 1.12, 1] } : { opacity: 0.12, scale: 1 }}
+                      transition={isActive ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
+                    />
+                    <motion.svg
+                      className={`w-8 h-8 ${item.iconColor}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      animate={isActive ? { y: [0, -3, 0] } : { y: 0 }}
+                      transition={isActive ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.path} />
+                    </motion.svg>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Why Us</h3>
-              <p className="text-slate-600">We offer support services that can free up management to concentrate on important aspects of their business.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Proven Experience</h3>
-              <p className="text-slate-600">We have proven experience of managing end to end finance and accounts processes from initial invoicing till payment.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Business Intelligence</h3>
-              <p className="text-slate-600">We turn numbers into actionable business intelligence - building a better picture offering better finance.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">Future Planning</h3>
-              <p className="text-slate-600">We explore ideas and help you plan for a more profitable future wherever you are in your business lifecycle.</p>
-            </div>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-4">{item.title}</h3>
+                  <p className="text-slate-600">{item.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -137,38 +161,43 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group bg-white rounded-xl border border-slate-200 p-8 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            {[
+              { title: "Audit & Assurance", desc: "Comprehensive audit services for public and private sector organizations.", href: "/services/audit-assurance", path: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
+              { title: "Tax & Compliance", desc: "Expert tax planning and compliance services for businesses.", href: "/services/tax-compliance", path: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" },
+              { title: "Cybersecurity Services", desc: "Advanced cybersecurity solutions including VAPT, SOC, and cloud security.", href: "/cybersecurity", path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" }
+            ].map((item, idx) => {
+              const isActive = activePracticeIdx === idx;
+              return (
+                <motion.div
+                  key={item.title}
+                  className="group bg-white rounded-xl border border-slate-200 p-8 hover:shadow-lg transition-shadow"
+                  animate={isActive ? { scale: 1.02 } : { scale: 1 }}
+                  transition={{ scale: { type: "spring", stiffness: 260, damping: 22 } }}
+                >
+                  <div className="relative w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <motion.div
+                      aria-hidden
+                      className="absolute -inset-3 bg-blue-500/35 rounded-full blur-2xl"
+                      animate={isActive ? { opacity: [0.7, 0.25, 0.7], scale: [1, 1.12, 1] } : { opacity: 0.12, scale: 1 }}
+                      transition={isActive ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
+                    />
+                    <motion.svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      animate={isActive ? { y: [0, -3, 0] } : { y: 0 }}
+                      transition={isActive ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.path} />
+                    </motion.svg>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Audit & Assurance</h3>
-              <p className="text-slate-600 mb-4">Comprehensive audit services for public and private sector organizations.</p>
-              <a href="/services/audit-assurance" className="text-blue-600 font-medium hover:text-blue-700">Learn more →</a>
-            </div>
-
-            <div className="group bg-white rounded-xl border border-slate-200 p-8 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Tax & Compliance</h3>
-              <p className="text-slate-600 mb-4">Expert tax planning and compliance services for businesses.</p>
-              <a href="/services/tax-compliance" className="text-blue-600 font-medium hover:text-blue-700">Learn more →</a>
-            </div>
-
-            <div className="group bg-white rounded-xl border border-slate-200 p-8 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">Cybersecurity Services</h3>
-              <p className="text-slate-600 mb-4">Advanced cybersecurity solutions including VAPT, SOC, and cloud security.</p>
-              <a href="/cybersecurity" className="text-blue-600 font-medium hover:text-blue-700">Learn more →</a>
-            </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">{item.title}</h3>
+                  <p className="text-slate-600 mb-4">{item.desc}</p>
+                  <a href={item.href} className="text-blue-600 font-medium hover:text-blue-700">Learn more →</a>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -251,38 +280,28 @@ export default function Home() {
           <div className="mt-16 bg-white rounded-xl p-8 shadow-lg border border-slate-200">
             <h3 className="text-xl font-semibold text-slate-900 mb-6 text-center">Our Impact Across Sectors</h3>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-slate-900 mb-2">Public Sector</h4>
-                <p className="text-slate-600 text-sm">Government organizations and PSUs</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-slate-900 mb-2">Banking & Finance</h4>
-                <p className="text-slate-600 text-sm">Financial institutions and banks</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-slate-900 mb-2">Private Sector</h4>
-                <p className="text-slate-600 text-sm">Corporates and private enterprises</p>
-              </div>
+              {[
+                { title: "Public Sector", iconBg: "bg-blue-100", iconColor: "text-blue-600", path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", glow: "bg-blue-500/35", desc: "Government organizations and PSUs" },
+                { title: "Banking & Finance", iconBg: "bg-green-100", iconColor: "text-green-600", path: "M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z", glow: "bg-green-500/35", desc: "Financial institutions and banks" },
+                { title: "Private Sector", iconBg: "bg-purple-100", iconColor: "text-purple-600", path: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", glow: "bg-purple-500/35", desc: "Corporates and private enterprises" }
+              ].map((item, idx) => {
+                const isActive = activeImpactIdx === idx;
+                return (
+                  <motion.div key={item.title} className="text-center" animate={isActive ? { scale: 1.03 } : { scale: 1 }} transition={{ scale: { type: "spring", stiffness: 260, damping: 22 } }}>
+                    <div className={`relative w-20 h-20 ${item.iconBg} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                      <motion.div aria-hidden className={`absolute -inset-5 ${item.glow} rounded-full blur-2xl`} animate={isActive ? { opacity: [0.7, 0.25, 0.7], scale: [1, 1.1, 1] } : { opacity: 0.12, scale: 1 }} transition={isActive ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }} />
+                      <motion.svg className={`w-10 h-10 ${item.iconColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" animate={isActive ? { y: [0, -3, 0] } : { y: 0 }} transition={isActive ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.path} />
+                      </motion.svg>
+                    </div>
+                    <h4 className="font-semibold text-slate-900 mb-2">{item.title}</h4>
+                    <p className="text-slate-600 text-sm">{item.desc}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
-        </div>
+                </div>
       </section>
 
       {/* Stats Section */}
@@ -294,22 +313,27 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600">30+</div>
-              <div className="text-slate-600">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600">10</div>
-              <div className="text-slate-600">Partners</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600">87+</div>
-              <div className="text-slate-600">Team Members</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600">4</div>
-              <div className="text-slate-600">Office Locations</div>
-            </div>
+            {[
+              { label: "Years Experience", value: 30, suffix: "+" },
+              { label: "Partners", value: 10, suffix: "" },
+              { label: "Team Members", value: 87, suffix: "+" },
+              { label: "Office Locations", value: 4, suffix: "" }
+            ].map((item) => (
+              <motion.div
+                key={item.label}
+                className="text-center"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                whileHover={{ translateY: -4 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+              <div className="text-4xl font-bold text-blue-600">
+                  <CountUp end={item.value} duration={1.0} suffix={item.suffix} enableScrollSpy scrollSpyOnce />
+              </div>
+                <div className="text-slate-600">{item.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -332,7 +356,7 @@ export default function Home() {
                   src="https://www.google.com/maps?q=Chintels+House+16+Station+Road+Lucknow+226001&output=embed" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Z A R K & CO Head Office Location"
+                  title="K RAGHAV & ASSOCIATES Head Office Location"
                 />
               </div>
             </div>
@@ -346,7 +370,7 @@ export default function Home() {
                   src="https://www.google.com/maps?q=Adityapur+Jamshedpur+Jharkhand+831013&output=embed" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Z A R K & CO Jamshedpur Office Location"
+                  title="K RAGHAV & ASSOCIATES Jamshedpur Office Location"
                 />
               </div>
             </div>
@@ -360,7 +384,7 @@ export default function Home() {
                   src="https://www.google.com/maps?q=Ramnagar+Varanasi+221008&output=embed" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Z A R K & CO Varanasi Office Location"
+                  title="K RAGHAV & ASSOCIATES Varanasi Office Location"
                 />
               </div>
             </div>
@@ -374,7 +398,7 @@ export default function Home() {
                   src="https://www.google.com/maps?q=Ahinsa+Khand+2+Indirapuram+Ghaziabad+201014&output=embed" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Z A R K & CO Ghaziabad Office Location"
+                  title="K RAGHAV & ASSOCIATES Ghaziabad Office Location"
                 />
               </div>
             </div>

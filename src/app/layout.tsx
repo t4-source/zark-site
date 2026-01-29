@@ -4,6 +4,7 @@ import Image from "next/image";
 import DisclaimerModal from "@/components/DisclaimerModal";
 import { NotificationProvider } from "@/components/Notification";
 import MobileNavigation from "@/components/MobileNavigation";
+import CustomChatbot from "@/components/CustomChatbot";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -18,9 +19,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z A R K & CO | Chartered Accountants",
+  title: "K RAGHAV & ASSOCIATES | Chartered Accountants",
   description:
-    "Z A R K & CO is a Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.",
+    "K RAGHAV & ASSOCIATES is a Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.",
   metadataBase: new URL("https://www.example.com"),
   icons: { 
     icon: [
@@ -31,8 +32,8 @@ export const metadata: Metadata = {
     apple: "/CA_India_Logo.png"
   },
   openGraph: {
-    title: "Z A R K & CO | Chartered Accountants",
-    description: "Z A R K & CO is a Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.",
+    title: "K RAGHAV & ASSOCIATES | Chartered Accountants",
+    description: "K RAGHAV & ASSOCIATES is a Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.",
     images: ["/CA_India_Logo.png"],
   },
 };
@@ -50,8 +51,8 @@ export default function RootLayout({
           <header className="border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-40">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3">
-                <Image src="/CA_India_Logo.png" alt="Z A R K & CO" width={60} height={60} className="rounded" />
-                <span className="font-semibold text-slate-900 text-xl">Z A R K & CO</span>
+                <Image src="/CA_India_Logo.png" alt="K RAGHAV & ASSOCIATES" width={60} height={60} className="rounded" />
+                <span className="font-semibold text-slate-900 text-xl">K RAGHAV & ASSOCIATES</span>
               </Link>
               
               {/* Desktop Navigation */}
@@ -79,8 +80,8 @@ export default function RootLayout({
                 {/* Company Info */}
                 <div className="md:col-span-2">
                   <div className="flex items-center gap-2 mb-4">
-                    <Image src="/CA_India_Logo.png" alt="Z A R K & CO" width={48} height={48} className="rounded" />
-                    <span className="font-semibold text-slate-900 text-lg">Z A R K & CO</span>
+                    <Image src="/CA_India_Logo.png" alt="K RAGHAV & ASSOCIATES" width={48} height={48} className="rounded" />
+                    <span className="font-semibold text-slate-900 text-lg">K RAGHAV & ASSOCIATES</span>
                   </div>
                   <p className="text-slate-600 mb-4">
                     Chartered Accountancy firm with over 30 years of experience in audit, assurance, taxation, consulting and cybersecurity services.
@@ -98,7 +99,7 @@ export default function RootLayout({
                   <ul className="space-y-2 text-sm">
                     <li><Link href="/who-we-are" className="text-slate-600 hover:text-blue-600">Who we are</Link></li>
                     <li><Link href="/practice-areas" className="text-slate-600 hover:text-blue-600">Practice areas</Link></li>
-                    <li><Link href="/cybersecurity" className="text-slate-600 hover:text-blue-600">Cybersecurity</Link></li>
+                    <li><Link href="/cybersecurity" className="text-slate-600 hover:text-blue-600">Cybersecurity Services</Link></li>
                     <li><Link href="/blogs" className="text-slate-600 hover:text-blue-600">Blogs</Link></li>
                     <li><Link href="/careers" className="text-slate-600 hover:text-blue-600">Careers</Link></li>
                     <li><Link href="/contact" className="text-slate-600 hover:text-blue-600">Contact</Link></li>
@@ -167,13 +168,13 @@ export default function RootLayout({
               <div className="border-t border-slate-200 pt-8">
                 <div className="text-xs leading-relaxed text-slate-600">
                   <p className="mb-2">
-                    The rules of Institute of Chartered Accountants of India prohibit Chartered Accountants firm from advertising and soliciting work in the public domain. This website is solely meant for the purpose of information and not for the purpose of advertising. ZARK & CO does not intend to solicit clients through this website. We do not take the responsibility of any action taken by any person based on the information posted here.
+                    The rules of Institute of Chartered Accountants of India prohibit Chartered Accountants firm from advertising and soliciting work in the public domain. This website is solely meant for the purpose of information and not for the purpose of advertising. K RAGHAV & ASSOCIATES does not intend to solicit clients through this website. We do not take the responsibility of any action taken by any person based on the information posted here.
                   </p>
                   <p className="mb-4">
                     By proceeding beyond this point the visitor acknowledges that the information provided on the website does not (a) amount to solicitation and advertising; and (b) is meant only for their understanding about our activities and who we are.
                   </p>
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="text-slate-500">© {new Date().getFullYear()} Z A R K & CO. All rights reserved.</div>
+                    <div className="text-slate-500">© {new Date().getFullYear()} K RAGHAV & ASSOCIATES. All rights reserved.</div>
                     <div className="flex gap-4 text-xs">
                       <Link href="/privacy" className="text-slate-500 hover:text-slate-700">Privacy Policy</Link>
                       <Link href="/terms" className="text-slate-500 hover:text-slate-700">Terms of Service</Link>
@@ -192,7 +193,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'ZARK & CO',
+              name: 'K RAGHAV & ASSOCIATES',
               url: 'https://www.example.com',
               email: 'raghav@kraca.in',
               telephone: '+91-9936104447',
@@ -211,6 +212,29 @@ export default function RootLayout({
 
         {/* First-visit ICAI compliance modal */}
         <DisclaimerModal />
+        
+        {/* Custom Chatbot */}
+        <CustomChatbot />
+        
+        {/* Tawk.to Chatbot (Alternative - Uncomment to use) */}
+        {/* 
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              var Tawk_API = Tawk_API || {};
+              var Tawk_LoadStart = new Date();
+              (function() {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/YOUR_TAWK_ID/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+              })();
+            `,
+          }}
+        />
+        */}
         </body>
       </html>
     </NotificationProvider>
