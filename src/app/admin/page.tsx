@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    document.title = "Admin Dashboard | Z A R K & CO";
+    document.title = "Admin Dashboard | K RAGHAV & ASSOCIATES";
     // Set favicon
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement;
     if (link) {

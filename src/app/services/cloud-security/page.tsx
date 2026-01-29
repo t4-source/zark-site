@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Cloud Security Services | Z A R K & CO",
+  title: "Cloud Security Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive cloud security solutions to protect your cloud infrastructure and data.",
   icons: { icon: "/CA_India_Logo.png" },
 };

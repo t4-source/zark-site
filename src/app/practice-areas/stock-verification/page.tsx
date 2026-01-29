@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Stock & Physical Verification | Z A R K & CO",
+  title: "Stock & Physical Verification | K RAGHAV & ASSOCIATES",
   description: "Comprehensive stock verification and fixed asset tagging services for various industries.",
 };
 

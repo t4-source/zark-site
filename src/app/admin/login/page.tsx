@@ -7,7 +7,7 @@ export default function LoginPage() {
   const { showNotification } = useNotification();
   
   useEffect(() => {
-    document.title = "Admin Login | Z A R K & CO";
+    document.title = "Admin Login | K RAGHAV & ASSOCIATES";
     // Set favicon
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement;
     if (link) {
@@ -28,7 +28,7 @@ export default function LoginPage() {
               Admin Login
             </h2>
             <p className="text-slate-600">
-              Z A R K & CO Admin Panel
+              K RAGHAV & ASSOCIATES Admin Panel
             </p>
           </div>
           

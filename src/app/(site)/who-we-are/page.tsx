@@ -2,9 +2,9 @@ import MembersStats from "./members-stats";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Who we are | Z A R K & CO",
+  title: "Who we are | K RAGHAV & ASSOCIATES",
   description:
-    "About Z A R K & CO: a Chartered Accountancy firm with 30+ years of experience in audit, assurance, consulting, and cybersecurity.",
+    "About K RAGHAV & ASSOCIATES: a Chartered Accountancy firm with 30+ years of experience in audit, assurance, consulting, and cybersecurity.",
   icons: { icon: "/CA_India_Logo.png" },
 };
 
@@ -28,7 +28,7 @@ export default function Page() {
       
       <div className="grid lg:grid-cols-2 gap-12 mb-16">
         <div>
-          <h2 className="text-2xl font-semibold text-slate-900 mb-6">About Z A R K & CO</h2>
+          <h2 className="text-2xl font-semibold text-slate-900 mb-6">About K RAGHAV & ASSOCIATES</h2>
           <div className="text-slate-700 space-y-4">
             <p>
               With over 30 years of professional expertise, our firm has delivered comprehensive audit, assurance, and consulting services across Public Sector Undertakings, Banking & Financial Institutions, Risk & Assurance domains, and Private Enterprises. Our strong presence in diverse industries enables us to provide holistic solutions with a blend of technical knowledge and practical insights.

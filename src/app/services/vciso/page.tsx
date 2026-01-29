@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Managed Security Services (vCISO) | Z A R K & CO",
+  title: "Managed Security Services (vCISO) | K RAGHAV & ASSOCIATES",
   description: "Virtual Chief Information Security Officer services to provide strategic security leadership.",
 };
 

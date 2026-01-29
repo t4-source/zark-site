@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Vulnerability Assessment & Penetration Testing | Z A R K & CO",
+  title: "Vulnerability Assessment & Penetration Testing | K RAGHAV & ASSOCIATES",
   description: "Comprehensive VAPT services to identify and remediate security vulnerabilities in your systems and applications.",
   icons: { icon: "/CA_India_Logo.png" },
 };
