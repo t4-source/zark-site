@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Audit & Assurance Services | Z A R K & CO",
+  title: "Audit & Assurance Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive audit and assurance services for public and private sector organizations.",
   icons: { icon: "/CA_India_Logo.png" },
 };

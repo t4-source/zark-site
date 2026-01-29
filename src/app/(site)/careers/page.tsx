@@ -2,8 +2,8 @@ import ContactDialog from "@/components/ContactDialog";
 import JobApplicationDialog from "@/components/JobApplicationDialog";
 
 export const metadata = {
-  title: "Careers | Z A R K & CO",
-  description: "Join Z A R K & CO across audit, consulting, and cybersecurity.",
+  title: "Careers | K RAGHAV & ASSOCIATES",
+  description: "Join K RAGHAV & ASSOCIATES across audit, consulting, and cybersecurity.",
   icons: { icon: "/CA_India_Logo.png" },
 };
 
@@ -14,7 +14,7 @@ export default function Page() {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold text-slate-900 mb-6">Join Our Team</h1>
         <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-          Build your career with Z A R K & CO. We offer opportunities in audit, consulting, cybersecurity, and more.
+          Build your career with K RAGHAV & ASSOCIATES. We offer opportunities in audit, consulting, cybersecurity, and more.
         </p>
       </div>
 

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Data Governance Services | Z A R K & CO",
+  title: "Data Governance Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive data governance frameworks to ensure data quality, privacy, and compliance.",
 };
 

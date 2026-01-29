@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Managed SOC Services | Z A R K & CO",
+  title: "Managed SOC Services | K RAGHAV & ASSOCIATES",
   description: "24/7 Security Operations Center services to monitor, detect, and respond to cyber threats in real-time.",
 };
 

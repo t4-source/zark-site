@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Cybersecurity Services | Z A R K & CO",
+  title: "Cybersecurity Services | K RAGHAV & ASSOCIATES",
   description:
     "Cyber Security Consulting, Security Audit & Compliance, VAPT, Managed SOC, Cloud Security, Managed Security Services (vCISO), Trainings, Data Governance.",
   icons: { icon: "/CA_India_Logo.png" },

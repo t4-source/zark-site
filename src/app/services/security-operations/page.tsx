@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Security Operations Services | Z A R K & CO",
+  title: "Security Operations Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive security operations services including monitoring, incident response, and threat management.",
 };
 

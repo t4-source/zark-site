@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Security Training Services | Z A R K & CO",
+  title: "Security Training Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive cybersecurity training programs to enhance your team's security awareness and skills.",
 };
 
