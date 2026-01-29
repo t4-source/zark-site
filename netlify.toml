@@ -1,14 +1,13 @@
 [build]
   command = "npm ci && npm run build"
-  publish = "out"
+  publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "18"
-  NPM_VERSION = "9"
-  NPM_FLAGS = "--version"
+  # Ensure Netlify uses Node 20+ to support Next.js 15
+  NODE_VERSION = "20"
+  NPM_VERSION = "10"
+  # Use this to skip the legacy static export check
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
 
-# Next.js static export redirects
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
