@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Banking & Financial Institutions Audits | Z A R K & CO",
+  title: "Banking & Financial Institutions Audits | K RAGHAV & ASSOCIATES",
   description: "Comprehensive audit services for banking and financial institutions including statutory, concurrent, and revenue audits.",
 };
 

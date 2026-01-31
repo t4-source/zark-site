@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Tax & Compliance Services | Z A R K & CO",
+  title: "Tax & Compliance Services | K RAGHAV & ASSOCIATES",
   description: "Expert tax planning and compliance services for businesses and individuals.",
   icons: { icon: "/CA_India_Logo.png" },
 };

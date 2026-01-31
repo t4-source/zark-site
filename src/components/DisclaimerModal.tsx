@@ -38,7 +38,7 @@ export default function DisclaimerModal() {
           <h2 className="text-lg font-semibold text-slate-900 mb-3">Important Disclaimer</h2>
           <div className="text-sm text-slate-700 space-y-3">
             <p>
-              The rules of Institute of Chartered Accountants of India prohibit Chartered Accountants firm from advertising and soliciting work in the public domain. This website is solely meant for the purpose of information and not for the purpose of advertising. Z A R K & Co does not intend to solicit clients through this website. We do not take the responsibility of any action taken by any person based on the information posted here.
+              The rules of Institute of Chartered Accountants of India prohibit Chartered Accountants firm from advertising and soliciting work in the public domain. This website is solely meant for the purpose of information and not for the purpose of advertising. K RAGHAV & ASSOCIATES does not intend to solicit clients through this website. We do not take the responsibility of any action taken by any person based on the information posted here.
             </p>
             <p>
               By proceeding beyond this point the visitor acknowledges that the information provided on the website does not:

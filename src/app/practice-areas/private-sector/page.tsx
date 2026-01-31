@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Private Sector Audits & Compliance | Z A R K & CO",
+  title: "Private Sector Audits & Compliance | K RAGHAV & ASSOCIATES",
   description: "Comprehensive audit and compliance services for private sector organizations across various industries.",
 };
 

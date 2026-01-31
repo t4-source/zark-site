@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Security Audit & Compliance | Z A R K & CO",
+  title: "Security Audit & Compliance | K RAGHAV & ASSOCIATES",
   description: "Comprehensive security audit and compliance services to ensure your organization meets regulatory requirements and industry standards.",
 };
 

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Practice areas | Z A R K & CO",
-  description: "Audit, assurance, taxation, advisory, and risk services by Z A R K & CO.",
+  title: "Practice areas | K RAGHAV & ASSOCIATES",
+  description: "Audit, assurance, taxation, advisory, and risk services by K RAGHAV & ASSOCIATES.",
   icons: { icon: "/CA_India_Logo.png" },
 };
 

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Public Sector & Government Audits | Z A R K & CO",
+  title: "Public Sector & Government Audits | K RAGHAV & ASSOCIATES",
   description: "Comprehensive audit services for public sector and government organizations including power, energy, healthcare, and infrastructure.",
 };
 

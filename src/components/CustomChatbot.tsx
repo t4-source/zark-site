@@ -16,7 +16,7 @@ const CustomChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello! I'm here to help you with information about Z A R K & Co's services. How can I assist you today?",
+      text: "Hello! I'm here to help you with information about K RAGHAV & ASSOCIATES' services. How can I assist you today?",
       isUser: false,
       timestamp: new Date(),
     },
@@ -29,10 +29,58 @@ const CustomChatbot = () => {
 
   const quickReplies = useMemo(() => [
     "What are your practice areas?",
-    "How can I contact you?",
+    "Tell me about banking & financial work",
     "Tell me about cybersecurity services",
-    "What career opportunities do you have?",
+    "How can I contact you?",
   ], []);
+
+  const [suggestions, setSuggestions] = useState<string[]>(quickReplies);
+
+  const getNextSuggestions = useCallback((userMessage: string): string[] => {
+    const msg = userMessage.toLowerCase();
+
+    if (msg.includes('practice') || msg.includes('area')) {
+      return [
+        "Tell me about banking & financial work",
+        "Tell me about cybersecurity services",
+        "How can I contact you?",
+      ];
+    }
+
+    if (msg.includes('cybersecurity') || msg.includes('cyber')) {
+      return [
+        "What are your practice areas?",
+        "Tell me about banking & financial work",
+        "How can I contact you?",
+      ];
+    }
+
+    if (msg.includes('contact') || msg.includes('phone') || msg.includes('email')) {
+      return [
+        "What are your practice areas?",
+        "Tell me about cybersecurity services",
+        "Tell me about banking & financial work",
+      ];
+    }
+
+    if (msg.includes('career') || msg.includes('job') || msg.includes('employment') || msg.includes('hiring') || msg.includes('work')) {
+      return [
+        "What are your practice areas?",
+        "Tell me about cybersecurity services",
+        "How can I contact you?",
+      ];
+    }
+
+    if (msg.includes('banking') || msg.includes('financial')) {
+      return [
+        "What are your practice areas?",
+        "Tell me about cybersecurity services",
+        "How can I contact you?",
+      ];
+    }
+
+    return quickReplies;
+  }, [quickReplies]);
 
   const handleQuickReply = (reply: string) => {
     setInputText(reply);
@@ -42,7 +90,7 @@ const CustomChatbot = () => {
   const getBotResponse = useCallback((userMessage: string): string => {
     const message = userMessage.toLowerCase();
 
-    if (message.includes('service') || message.includes('offer')) {
+    if ((message.includes('service') || message.includes('offer')) && !message.includes('financial')) {
       return "We offer comprehensive chartered accountancy practice areas including audit & assurance, taxation, risk advisory, and business consulting. We also provide cybersecurity services. You can explore our practice areas and cybersecurity services on our website.";
     }
 
@@ -55,7 +103,7 @@ const CustomChatbot = () => {
     }
 
     if (message.includes('practice') || message.includes('area')) {
-      return "Our practice areas include Public Sector Audits, Private Sector Audits, Banking & Financial Services, Stock Verification, Risk Advisory, and Project Financing. We serve clients across various industries with specialized expertise.";
+      return "Our practice areas include Public Sector Audits, Private Sector Audits, Banking & Financial Institutions, Stock Verification, Risk Advisory, and Project Financing. We serve clients across various industries with specialized expertise.";
     }
 
     if (message.includes('audit') || message.includes('assurance')) {
@@ -71,7 +119,7 @@ const CustomChatbot = () => {
     }
 
     if (message.includes('experience') || message.includes('year') || message.includes('established')) {
-      return "Z A R K & Co was established on April 4, 1997, giving us over 25 years of experience in chartered accountancy. We are members of CII and Young Indians, demonstrating our commitment to professional excellence.";
+      return "K RAGHAV & ASSOCIATES was established on April 4, 1997, giving us over 25 years of experience in chartered accountancy. We are members of CII and Young Indians, demonstrating our commitment to professional excellence.";
     }
 
     if (message.includes('location') || message.includes('office') || message.includes('address')) {
@@ -84,12 +132,12 @@ const CustomChatbot = () => {
 
     // Greetings
     if (message.includes('hello') || message.includes('hi') || message.includes('hey') || message.includes('good morning') || message.includes('good afternoon') || message.includes('good evening')) {
-      return "Hello! Welcome to Z A R K & Co. I'm Vitta, your AI assistant. How can I help you today?";
+      return "Hello! Welcome to K RAGHAV & ASSOCIATES. I'm Vitta, your AI assistant. How can I help you today?";
     }
 
     // Banking and Financial
     if (message.includes('banking') || message.includes('financial') || message.includes('stock') || message.includes('verification')) {
-      return "Our banking and financial services include stock verification, financial analysis, banking audits, and financial consulting. We work with banks, financial institutions, and corporate clients.";
+      return "Our banking and financial practice areas include stock verification, financial analysis, banking audits, and financial consulting. We work with banks, financial institutions, and corporate clients.";
     }
 
     // Risk Advisory
@@ -161,10 +209,12 @@ const CustomChatbot = () => {
         isUser: false,
         timestamp: new Date(),
       };
+      const nextSuggestions = getNextSuggestions(messageText);
       setMessages(prev => [...prev, botMessage]);
+      setSuggestions(nextSuggestions);
       setIsTyping(false);
     }, 1000);
-  }, [inputText, getBotResponse]);
+  }, [inputText, getBotResponse, getNextSuggestions]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -179,41 +229,48 @@ const CustomChatbot = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 z-50 group flex items-center gap-3"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 group focus:outline-none"
           aria-label="Open chat"
         >
-          <div className="w-6 h-6 rounded-full overflow-hidden">
-            <Image 
-              src="/bot.gif" 
-              alt="Vitta" 
-              width={24} 
-              height={24} 
-              className="w-full h-full object-cover"
-              unoptimized
-              loading="lazy"
-            />
+          <div className="relative inline-flex items-center">
+            {/* Bubble */}
+            <div className="flex items-center gap-3 bg-white text-slate-900 px-4 py-3 rounded-2xl shadow-xl border border-slate-200 max-w-xs sm:max-w-sm">
+              <div className="w-9 h-9 rounded-full overflow-hidden shadow-sm flex-shrink-0">
+                <Image 
+                  src="/bot.gif" 
+                  alt="Chat assistant" 
+                  width={36} 
+                  height={36} 
+                  className="w-full h-full object-cover"
+                  unoptimized
+                  loading="lazy"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[11px] text-slate-500 flex items-center gap-1">
+                  Need help?
+                  <span className="flex gap-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0.1s' }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0.2s' }}></span>
+                  </span>
+                </span>
+                <span className="text-sm font-semibold text-slate-900 leading-tight">
+                  Chat with me
+                </span>
+              </div>
+            </div>
+            {/* Tail */}
+            <div className="absolute -bottom-1 right-6 w-3 h-3 bg-white border-r border-b border-slate-200 rotate-45" />
           </div>
-          <svg
-            className="w-6 h-6 group-hover:scale-110 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-            />
-          </svg>
         </button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[500px] bg-white rounded-lg shadow-2xl border border-gray-200 z-50 flex flex-col">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-[calc(100%-2rem)] max-w-md h-[65vh] sm:h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
+          <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                 <Image 
@@ -291,11 +348,11 @@ const CustomChatbot = () => {
           )}
 
           {/* Quick Replies */}
-          {!isMinimized && messages.length === 1 && (
+          {!isMinimized && (
             <div className="px-4 pb-2">
-              <p className="text-xs text-gray-600 mb-2 font-medium">Quick questions:</p>
+              <p className="text-xs text-gray-600 mb-2 font-medium">You can also ask:</p>
               <div className="flex flex-wrap gap-2">
-                {quickReplies.map((reply, index) => (
+                {suggestions.map((reply, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickReply(reply)}

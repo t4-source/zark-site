@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Technical Manpower Services | Z A R K & CO",
+  title: "Technical Manpower Services | K RAGHAV & ASSOCIATES",
   description: "Expert technical manpower services for cybersecurity, IT infrastructure, and specialized technical roles.",
 };
 

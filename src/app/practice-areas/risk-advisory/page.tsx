@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Risk & Advisory Services | Z A R K & CO",
+  title: "Risk & Advisory Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive risk management, internal controls, and MIS systems advisory services.",
 };
 

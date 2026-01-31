@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Cyber Security Consulting | Z A R K & CO",
+  title: "Cyber Security Consulting | K RAGHAV & ASSOCIATES",
   description: "Comprehensive cybersecurity consulting services to help organizations protect, detect, and respond to cyber threats.",
 };
 

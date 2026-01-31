@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Project Financing Services | Z A R K & CO",
+  title: "Project Financing Services | K RAGHAV & ASSOCIATES",
   description: "Comprehensive project financing solutions including financial structuring, funding analysis, and investment advisory services.",
   icons: { icon: "/CA_India_Logo.png" },
 };

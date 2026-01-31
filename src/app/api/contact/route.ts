@@ -28,6 +28,7 @@ export async function POST(req: Request) {
       organization = String(form.get("organization") || "");
       message = String(form.get("message") || "");
     }
+
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
@@ -39,8 +40,8 @@ export async function POST(req: Request) {
     const to = process.env.CONTACT_TO || user;
 
     if (!host || !user || !pass) {
-      console.log('SMTP not configured, storing contact message locally');
-      console.log('Contact Message Received:', { name, email, organization, message });
+      console.log("SMTP not configured, storing contact message locally");
+      console.log("Contact Message Received:", { name, email, organization, message });
       return NextResponse.json({ ok: true });
     }
 
@@ -52,13 +53,13 @@ export async function POST(req: Request) {
         secure: port === 465,
         auth: { user, pass },
       });
-      
+
       await testTransporter.verify();
-      console.log('SMTP connection verified successfully');
+      console.log("SMTP connection verified successfully");
     } catch (smtpError) {
-      console.error('SMTP connection failed:', smtpError);
-      console.log('Falling back to local storage');
-      console.log('Contact Message Received:', { name, email, organization, message });
+      console.error("SMTP connection failed:", smtpError);
+      console.log("Falling back to local storage");
+      console.log("Contact Message Received:", { name, email, organization, message });
       return NextResponse.json({ ok: true });
     }
 
@@ -74,8 +75,8 @@ export async function POST(req: Request) {
       to,
       replyTo: email,
       subject: `New contact form submission from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nOrganization: ${organization || 'Not provided'}\n\nMessage:\n${message}`,
-      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Organization:</strong> ${organization || 'Not provided'}</p><p><strong>Message:</strong></p><p>${message}</p>`,
+      text: `Name: ${name}\nEmail: ${email}\nOrganization: ${organization || "Not provided"}\n\nMessage:\n${message}`,
+      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Organization:</strong> ${organization || "Not provided"}</p><p><strong>Message:</strong></p><p>${message}</p>`,
     });
 
     return NextResponse.json({ ok: true });
@@ -83,5 +84,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Failed to send" }, { status: 500 });
   }
 }
-
-

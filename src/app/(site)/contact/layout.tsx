@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Contact | Z A R K & CO",
-  description: "Get in touch with Z A R K & CO for audit, consulting, and cybersecurity services.",
+  title: "Contact | K RAGHAV & ASSOCIATES",
+  description: "Get in touch with K RAGHAV & ASSOCIATES for audit, consulting, and cybersecurity services.",
   icons: { icon: "/CA_India_Logo.png" },
 };
 
