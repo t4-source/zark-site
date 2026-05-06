@@ -29,6 +29,7 @@ export default function MobileNavigation() {
             <Link href="/" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>Home</Link>
             <Link href="/who-we-are" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>Who we are</Link>
             <Link href="/practice-areas" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>Practice areas</Link>
+            <Link href="/dpdpa" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>DPDPA Compliance</Link>
             <Link href="/cybersecurity" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>Cybersecurity Services</Link>
             <Link href="/blogs" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>Blogs</Link>
             <Link href="/careers" className="block px-3 py-2 text-sm text-slate-700 hover:text-blue-700 hover:bg-slate-50 rounded-md" onClick={toggleMenu}>Career</Link>

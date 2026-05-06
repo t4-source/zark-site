@@ -60,6 +60,7 @@ export default function RootLayout({
                 <Link href="/" className="hover:text-blue-700">Home</Link>
                 <Link href="/who-we-are" className="hover:text-blue-700">Who we are</Link>
                 <Link href="/practice-areas" className="hover:text-blue-700">Practice areas</Link>
+                <Link href="/dpdpa" className="hover:text-blue-700">DPDPA Compliance</Link>
                 <Link href="/cybersecurity" className="hover:text-blue-700">Cybersecurity Services</Link>
                 <Link href="/blogs" className="hover:text-blue-700">Blogs</Link>
                 <Link href="/careers" className="hover:text-blue-700">Career</Link>
