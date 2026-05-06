@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
 type Question = {
   id: string;
@@ -26,6 +26,7 @@ type Answer = { optIdx: number; score: number; weight: Question['weight'] };
 type Risk = 'HIGH' | 'MEDIUM' | 'LOW';
 
 export default function DpdpaLanding() {
+  const reduceMotion = useReducedMotion();
   const questions: Question[] = useMemo(
     () => [
       {
@@ -212,17 +213,17 @@ export default function DpdpaLanding() {
     <div className="bg-white text-slate-800">
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950">
         <div className="absolute inset-0 opacity-30" aria-hidden>
-          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-500 blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-indigo-500 blur-3xl" />
+          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-500 blur-2xl" />
+          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-indigo-500 blur-2xl" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
               <div className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold tracking-wider text-blue-100 ring-1 ring-white/15">
                 DPDPA 2023 COMPLIANCE
@@ -253,11 +254,11 @@ export default function DpdpaLanding() {
 
             <motion.div
               className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur shadow-lg"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.05 }}
-              whileHover={{ y: -4 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              whileHover={reduceMotion ? undefined : { y: -2 }}
             >
               <div className="text-xs font-semibold tracking-wider text-blue-100/80">DPDPA Penalty Schedule</div>
               <div className="mt-4 space-y-3 text-sm">
@@ -283,10 +284,10 @@ export default function DpdpaLanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-3xl"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
           >
             <h2 className="text-3xl font-bold text-slate-900">Why schools are exposed</h2>
             <p className="mt-4 text-slate-600">
@@ -321,11 +322,11 @@ export default function DpdpaLanding() {
               <motion.div
                 key={c.title}
                 className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.45, ease: 'easeOut', delay: idx * 0.04 }}
-                whileHover={{ y: -4 }}
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.22, ease: 'easeOut', delay: reduceMotion ? 0 : idx * 0.015 }}
+                whileHover={reduceMotion ? undefined : { y: -2 }}
               >
                 <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center text-lg">{c.icon}</div>
                 <h3 className="mt-4 font-semibold text-slate-900">{c.title}</h3>
@@ -340,10 +341,10 @@ export default function DpdpaLanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-3xl"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
           >
             <h2 className="text-3xl font-bold text-slate-900">End-to-End DPDPA compliance for schools</h2>
             <p className="mt-4 text-slate-600">
@@ -413,11 +414,11 @@ export default function DpdpaLanding() {
                   className={`text-left rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     isHighlighted ? 'border-blue-400' : 'border-slate-200'
                   }`}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.45, ease: 'easeOut', delay: idx * 0.03 }}
-                  whileHover={{ y: -4 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.22, ease: 'easeOut', delay: reduceMotion ? 0 : idx * 0.012 }}
+                  whileHover={reduceMotion ? undefined : { y: -2 }}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -437,10 +438,10 @@ export default function DpdpaLanding() {
                   <AnimatePresence initial={false}>
                     {isExpanded && (
                       <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        initial={reduceMotion ? false : { opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.16, ease: 'easeOut' }}
                         className="overflow-hidden"
                       >
                         <div className="mt-4 text-sm text-slate-700">
@@ -465,10 +466,10 @@ export default function DpdpaLanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-3xl"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
+            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
           >
             <h2 className="text-3xl font-bold text-slate-900">Free compliance assessment</h2>
             <p className="mt-4 text-slate-600">
@@ -493,10 +494,10 @@ export default function DpdpaLanding() {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={currentQ}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                    initial={reduceMotion ? false : { opacity: 0, x: 6 }}
+                    animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                    exit={reduceMotion ? undefined : { opacity: 0, x: -6 }}
+                    transition={{ duration: 0.12, ease: 'easeOut' }}
                   >
                     <div className="text-xs font-semibold tracking-wider text-blue-700">Question {currentQ + 1} of {questions.length}</div>
                     <div className="mt-2 text-lg font-medium text-slate-900">{questions[currentQ].text}</div>
