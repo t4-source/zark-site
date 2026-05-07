@@ -234,7 +234,7 @@ export default function DpdpaLanding() {
               <p className="mt-6 text-lg text-blue-100/80 max-w-2xl">
                 The Digital Personal Data Protection Act 2023 places serious obligations on every school in India.
                 Non-compliance with children&apos;s data rules carries penalties up to ₹200 Crore. K Raghav & Associates
-                helps you stay compliant.
+                helps schools across Lucknow and Uttar Pradesh stay compliant.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <a
@@ -629,9 +629,8 @@ export default function DpdpaLanding() {
             <div>
               <h2 className="text-3xl font-bold text-slate-900">Contact our team</h2>
               <p className="mt-4 text-slate-600">
-                Our DPDPA specialists work with educational institutions. Share your context and we&apos;ll recommend a practical compliance roadmap.
+                Our DPDPA specialists work with schools across Lucknow, Kanpur, Varanasi and Uttar Pradesh. Share your context and we&apos;ll recommend a practical compliance roadmap.
               </p>
-
               <div className="mt-6 space-y-3 text-sm text-slate-700">
                 <div><span className="font-semibold">Email:</span> raghav@kraca.in</div>
                 <div><span className="font-semibold">Phone:</span> +91-9936104447</div>
