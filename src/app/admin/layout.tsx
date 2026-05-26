@@ -1,88 +1,141 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+
+interface SessionUser {
+  id: string;
+  email: string;
+  name: string;
+  role: "admin" | "employee";
+}
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<SessionUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
+  const isLogin =
+    pathname === "/admin/login" || pathname === "/admin/login/";
 
   useEffect(() => {
-    // Skip auth check for login page (handle optional trailing slash)
-    if (pathname === '/admin/login' || pathname === '/admin/login/') {
+    if (isLogin) {
       setIsLoading(false);
       return;
     }
-
-    // Check authentication via API
-    const checkAuth = async () => {
+    (async () => {
       try {
-        const response = await fetch('/api/admin/verify', { credentials: 'include' });
+        const response = await fetch("/api/admin/verify", {
+          credentials: "include",
+        });
         const data = await response.json();
-        
         if (response.ok && data.authenticated) {
-          setIsAuthenticated(true);
+          setUser(data.user);
         } else {
-          router.push('/admin/login');
+          router.push("/admin/login");
         }
-      } catch (error) {
-        router.push('/admin/login');
+      } catch {
+        router.push("/admin/login");
       } finally {
         setIsLoading(false);
       }
-    };
+    })();
+  }, [router, pathname, isLogin]);
 
-    checkAuth();
-  }, [router, pathname]);
-
-  // Skip layout for login page (handle optional trailing slash)
-  if (pathname === '/admin/login' || pathname === '/admin/login/') {
-    return <>{children}</>;
-  }
+  if (isLogin) return <>{children}</>;
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-slate-600">Loading...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="animate-pulse text-slate-500">Loading…</div>
       </div>
     );
   }
+  if (!user) return null;
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  const isAdmin = user.role === "admin";
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <nav className="bg-white shadow-sm border-b">
+      <nav className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-slate-900">Admin Panel</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <a href="/admin/blogs" className="text-slate-600 hover:text-slate-900">Blogs</a>
-              <a href="/admin/jobs" className="text-slate-600 hover:text-slate-900">Jobs</a>
-              <a href="/admin/contacts" className="text-slate-600 hover:text-slate-900">Contacts</a>
-              <form action="/api/admin/logout" method="post">
-                <button type="submit" className="text-red-600 hover:text-red-900">Logout</button>
+          <div className="flex items-center justify-between h-16">
+            <Link href="/admin" className="flex items-center gap-3">
+              <Image src="/zark.png" alt="" width={32} height={32} />
+              <span className="font-semibold text-slate-900">
+                ZARK Workspace
+              </span>
+            </Link>
+            <div className="flex items-center gap-1 text-sm">
+              <Link
+                href="/admin"
+                className="px-3 py-2 text-slate-600 hover:text-blue-700"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/admin/blogs"
+                className="px-3 py-2 text-slate-600 hover:text-blue-700"
+              >
+                Blogs
+              </Link>
+              {isAdmin && (
+                <Link
+                  href="/admin/jobs"
+                  className="px-3 py-2 text-slate-600 hover:text-blue-700"
+                >
+                  Jobs
+                </Link>
+              )}
+              {isAdmin && (
+                <Link
+                  href="/admin/contacts"
+                  className="px-3 py-2 text-slate-600 hover:text-blue-700"
+                >
+                  Messages
+                </Link>
+              )}
+              <span className="mx-3 hidden sm:inline text-slate-400">|</span>
+              <span className="hidden sm:inline text-slate-500">
+                {user.name}{" "}
+                <span
+                  className={`ml-1 inline-flex items-center rounded-full px-2 py-0.5 text-xs ${
+                    isAdmin
+                      ? "bg-purple-100 text-purple-700"
+                      : "bg-blue-100 text-blue-700"
+                  }`}
+                >
+                  {user.role}
+                </span>
+              </span>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  await fetch("/api/admin/logout", {
+                    method: "POST",
+                    credentials: "include",
+                  });
+                  window.location.href = "/admin/login";
+                }}
+              >
+                <button
+                  type="submit"
+                  className="ml-2 rounded-md border border-slate-300 px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Sign out
+                </button>
               </form>
             </div>
           </div>
         </div>
       </nav>
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 }

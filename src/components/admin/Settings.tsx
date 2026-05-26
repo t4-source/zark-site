@@ -33,7 +33,7 @@ interface Settings {
 
 export default function Settings() {
   const [settings, setSettings] = useState<Settings>({
-    siteName: 'K RAGHAV & ASSOCIATES',
+    siteName: 'Z A R K & Co LLP',
     siteDescription: 'Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.',
     contactEmail: 'raghav@kraca.in',
     contactPhone: '+91-9936104447',
@@ -44,8 +44,8 @@ export default function Settings() {
       facebook: ''
     },
     seo: {
-      metaTitle: 'K RAGHAV & ASSOCIATES | Chartered Accountants',
-      metaDescription: 'K RAGHAV & ASSOCIATES is a Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.',
+      metaTitle: 'Z A R K & Co LLP | Chartered Accountants',
+      metaDescription: 'Z A R K & Co LLP is a Chartered Accountancy firm offering audit, assurance, taxation, consulting and cybersecurity services.',
       keywords: 'chartered accountants, audit, taxation, cybersecurity, consulting'
     },
     notifications: {

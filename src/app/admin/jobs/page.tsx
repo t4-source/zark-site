@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Job Management | K RAGHAV & ASSOCIATES Admin",
-  description: "Manage job postings for K RAGHAV & ASSOCIATES careers page.",
+  title: "Job Management Admin",
+  description: "Manage job postings for Z A R K & Co LLP careers page.",
 };
 
 export default function JobManagement() {

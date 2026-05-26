@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useNotification } from './Notification';
+import { useState } from "react";
+import Modal from "./Modal";
+import { useNotification } from "./Notification";
 
 interface JobApplicationDialogProps {
   position: string;
@@ -9,16 +10,26 @@ interface JobApplicationDialogProps {
   type: string;
 }
 
-export default function JobApplicationDialog({ position, location, type }: JobApplicationDialogProps) {
+const INPUT_CLASS =
+  "w-full rounded-xl border border-[color:var(--border)] bg-white px-3.5 py-2.5 text-[14px] text-[color:var(--ink-900)] placeholder:text-[color:var(--ink-300)] focus:border-[color:var(--accent-600)] focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-100)] transition";
+
+const LABEL_CLASS =
+  "block text-[12px] font-medium text-[color:var(--ink-700)] mb-1.5 uppercase tracking-[0.12em]";
+
+export default function JobApplicationDialog({
+  position,
+  location,
+  type,
+}: JobApplicationDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    experience: '',
+    name: "",
+    email: "",
+    phone: "",
+    experience: "",
     resume: null as File | null,
-    coverLetter: ''
+    coverLetter: "",
   });
   const { showNotification } = useNotification();
 
@@ -26,202 +37,245 @@ export default function JobApplicationDialog({ position, location, type }: JobAp
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('experience', formData.experience);
-      formDataToSend.append('coverLetter', formData.coverLetter);
-      formDataToSend.append('position', position);
-      formDataToSend.append('location', location);
-      formDataToSend.append('type', type);
-      
-      if (formData.resume) {
-        formDataToSend.append('resume', formData.resume);
-      }
+      const fd = new FormData();
+      fd.append("name", formData.name);
+      fd.append("email", formData.email);
+      fd.append("phone", formData.phone);
+      fd.append("experience", formData.experience);
+      fd.append("coverLetter", formData.coverLetter);
+      fd.append("position", position);
+      fd.append("location", location);
+      fd.append("type", type);
+      if (formData.resume) fd.append("resume", formData.resume);
 
-      const response = await fetch('/api/job-application', {
-        method: 'POST',
-        body: formDataToSend,
+      const response = await fetch("/api/job-application", {
+        method: "POST",
+        body: fd,
       });
-      
+
       if (response.ok) {
-        showNotification('Thank you for your application! We will review it and get back to you soon.', 'success');
+        showNotification(
+          "Thank you for your application. We will review it and get back to you soon.",
+          "success",
+        );
         setIsOpen(false);
-        setFormData({ name: '', email: '', phone: '', experience: '', resume: null, coverLetter: '' });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          experience: "",
+          resume: null,
+          coverLetter: "",
+        });
       } else {
-        showNotification('There was an error submitting your application. Please try again.', 'error');
+        showNotification(
+          "There was an error submitting your application. Please try again.",
+          "error",
+        );
       }
-    } catch (error) {
-      showNotification('There was an error submitting your application. Please try again.', 'error');
+    } catch {
+      showNotification(
+        "There was an error submitting your application. Please try again.",
+        "error",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData({
-        ...formData,
-        resume: e.target.files[0]
-      });
+    if (e.target.files?.[0]) {
+      setFormData({ ...formData, resume: e.target.files[0] });
     }
   };
 
-  if (!isOpen) {
-    return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-      >
-        Apply Now
-      </button>
-    );
-  }
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="fixed inset-0 bg-black/30" onClick={() => setIsOpen(false)} />
-      
-      <div className="relative mx-auto max-w-2xl w-full rounded-lg bg-white p-6 shadow-xl max-h-[90vh] overflow-y-auto">
-        <h2 className="text-xl font-semibold text-slate-900 mb-4">
-          Apply for {position}
-        </h2>
-        <p className="text-slate-600 mb-6">{location} • {type}</p>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <>
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[color:var(--ink-900)] px-5 py-2.5 text-[13.5px] font-medium text-white hover:bg-[color:var(--accent-700)] transition-colors"
+      >
+        Apply now
+        <svg
+          className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        title={`Apply for ${position}`}
+        description={`${location} · ${type}`}
+        size="xl"
+      >
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
-                Full Name *
+              <label htmlFor="jad-name" className={LABEL_CLASS}>
+                Full name *
               </label>
               <input
                 type="text"
-                id="name"
+                id="jad-name"
                 name="name"
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={INPUT_CLASS}
               />
             </div>
-            
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
+              <label htmlFor="jad-email" className={LABEL_CLASS}>
                 Email *
               </label>
               <input
                 type="email"
-                id="email"
+                id="jad-email"
                 name="email"
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={INPUT_CLASS}
               />
             </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">
-                Phone Number *
+              <label htmlFor="jad-phone" className={LABEL_CLASS}>
+                Phone *
               </label>
               <input
                 type="tel"
-                id="phone"
+                id="jad-phone"
                 name="phone"
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={INPUT_CLASS}
               />
             </div>
-            
             <div>
-              <label htmlFor="experience" className="block text-sm font-medium text-slate-700 mb-1">
-                Years of Experience *
+              <label htmlFor="jad-experience" className={LABEL_CLASS}>
+                Experience *
               </label>
               <input
                 type="text"
-                id="experience"
+                id="jad-experience"
                 name="experience"
                 required
                 value={formData.experience}
                 onChange={handleChange}
-                placeholder="e.g., 2-3 years"
-                className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g. 2-3 years"
+                className={INPUT_CLASS}
               />
             </div>
           </div>
-          
+
           <div>
-            <label htmlFor="resume" className="block text-sm font-medium text-slate-700 mb-1">
-              Resume/CV *
+            <label htmlFor="jad-resume" className={LABEL_CLASS}>
+              Resume / CV *
             </label>
             <input
               type="file"
-              id="resume"
+              id="jad-resume"
               name="resume"
               required
               accept=".pdf,.doc,.docx"
               onChange={handleFileChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-xl border border-[color:var(--border)] bg-white px-3.5 py-2.5 text-[13.5px] text-[color:var(--ink-700)] file:mr-3 file:rounded-full file:border-0 file:bg-[color:var(--accent-50)] file:px-3 file:py-1.5 file:text-[12px] file:font-medium file:text-[color:var(--accent-700)] hover:file:bg-[color:var(--accent-100)] focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-100)] focus:border-[color:var(--accent-600)] transition"
             />
-            <p className="text-xs text-slate-500 mt-1">PDF, DOC, or DOCX files only</p>
+            <p className="text-[11.5px] text-[color:var(--ink-400)] mt-1.5">
+              PDF, DOC or DOCX only
+            </p>
           </div>
-          
+
           <div>
-            <label htmlFor="coverLetter" className="block text-sm font-medium text-slate-700 mb-1">
-              Cover Letter
+            <label htmlFor="jad-cover" className={LABEL_CLASS}>
+              Cover letter
             </label>
             <textarea
-              id="coverLetter"
+              id="jad-cover"
               name="coverLetter"
               rows={4}
               value={formData.coverLetter}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Tell us why you're interested in this position..."
+              placeholder="Tell us why you're interested in this role."
+              className={INPUT_CLASS}
             />
           </div>
-          
-          <div className="flex gap-3 pt-4">
+
+          <div className="flex flex-col-reverse sm:flex-row gap-3 pt-2">
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="flex-1 px-4 py-2 border border-slate-300 text-slate-700 rounded-md hover:bg-slate-50"
+              className="flex-1 inline-flex items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-white px-5 py-2.5 text-[13.5px] font-medium text-[color:var(--ink-700)] hover:border-[color:var(--ink-700)] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--ink-900)] px-5 py-2.5 text-[13.5px] font-medium text-white hover:bg-[color:var(--accent-700)] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
             >
               {isSubmitting ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin h-4 w-4 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      className="opacity-25"
+                    />
+                    <path
+                      fill="currentColor"
+                      className="opacity-75"
+                      d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"
+                    />
                   </svg>
-                  Submitting...
+                  Submitting…
                 </>
               ) : (
-                'Submit Application'
+                <>
+                  Submit application
+                  <svg
+                    className="w-3.5 h-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </>
               )}
             </button>
           </div>
         </form>
-      </div>
-    </div>
+      </Modal>
+    </>
   );
 }
-

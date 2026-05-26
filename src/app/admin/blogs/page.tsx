@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Blog Management | K RAGHAV & ASSOCIATES Admin",
-  description: "Manage blog posts for K RAGHAV & ASSOCIATES website.",
+  title: "Blog Management Admin",
+  description: "Manage blog posts for Z A R K & Co LLP website.",
 };
 
 import BlogManagement from '@/components/admin/BlogManagement';

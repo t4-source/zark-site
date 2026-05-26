@@ -15,7 +15,12 @@
 
 # next.js
 /.next/
+/.next-build/
 /out/
+
+# user-generated content (filesystem store + uploads)
+/.data/
+/public/uploads/
 
 # production
 /build

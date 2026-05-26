@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Contact Messages | K RAGHAV & ASSOCIATES Admin",
+  title: "Contact Messages Admin",
   description: "View and manage contact form submissions.",
 };
 

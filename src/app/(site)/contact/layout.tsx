@@ -1,7 +1,8 @@
 export const metadata = {
-  title: "Contact | K RAGHAV & ASSOCIATES",
-  description: "Get in touch with K RAGHAV & ASSOCIATES for audit, consulting, and cybersecurity services.",
-  icons: { icon: "/CA_India_Logo.png" },
+  title: "Contact",
+  description:
+    "Get in touch with Z A R K & Co LLP — Chartered Accountants. Offices across Lucknow, Jamshedpur, Varanasi and Ghaziabad.",
+  icons: { icon: "/zark.png" },
 };
 
 export default function ContactLayout({

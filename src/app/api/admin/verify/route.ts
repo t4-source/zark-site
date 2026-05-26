@@ -1,31 +1,20 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
-import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
-import jwt from 'jsonwebtoken';
+import { NextResponse } from "next/server";
+import { getSession } from "@/lib/auth";
 
 export async function GET() {
-  try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get('admin-token')?.value;
-
-    if (!token) {
-      return NextResponse.json({ authenticated: false }, { status: 401 });
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret') as {
-      username: string;
-      role: string;
-    };
-
-    if (decoded.role !== 'admin') {
-      return NextResponse.json({ authenticated: false }, { status: 401 });
-    }
-
-    return NextResponse.json({ authenticated: true, user: { username: decoded.username, role: decoded.role } });
-  } catch {
+  const session = await getSession();
+  if (!session) {
     return NextResponse.json({ authenticated: false }, { status: 401 });
   }
+  return NextResponse.json({
+    authenticated: true,
+    user: {
+      id: session.uid,
+      email: session.email,
+      name: session.name,
+      role: session.role,
+    },
+  });
 }
-
-

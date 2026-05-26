@@ -210,58 +210,62 @@ export default function DpdpaLanding() {
   };
 
   return (
-    <div className="bg-white text-slate-800">
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950">
-        <div className="absolute inset-0 opacity-30" aria-hidden>
-          <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-blue-500 blur-2xl" />
-          <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-indigo-500 blur-2xl" />
-        </div>
+    <div className="bg-[color:var(--bg)] text-[color:var(--ink-700)]">
+      <section className="relative overflow-hidden">
+        <div className="dot-grid absolute inset-0 -z-10" />
+        <div className="mesh-aurora absolute inset-0 -z-10 opacity-50" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-28 sm:pb-20">
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
             <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              className="lg:col-span-7"
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.6 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
             >
-              <div className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-xs font-semibold tracking-wider text-blue-100 ring-1 ring-white/15">
-                DPDPA 2023 COMPLIANCE
+              <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-white/70 backdrop-blur px-3.5 py-1.5 text-[12px] tracking-wide text-[color:var(--ink-700)]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-600)]" />
+                DPDPA 2023 · Compliance
               </div>
-              <h1 className="mt-6 text-4xl sm:text-5xl font-bold text-white leading-tight">
-                Is Your School Legally Protected Under India&apos;s New Data Law?
+              <h1 className="display mt-6 text-4xl sm:text-5xl lg:text-[64px] text-[color:var(--ink-900)] leading-[1.05] max-w-3xl">
+                Is your school legally protected under India&rsquo;s new data law?
               </h1>
-              <p className="mt-6 text-lg text-blue-100/80 max-w-2xl">
-                The Digital Personal Data Protection Act 2023 places serious obligations on every school in India.
-                Non-compliance with children&apos;s data rules carries penalties up to ₹200 Crore. K Raghav & Associates
-                helps schools across Lucknow and Uttar Pradesh stay compliant.
+              <p className="mt-6 text-[17px] leading-relaxed text-[color:var(--ink-500)] max-w-2xl">
+                The Digital Personal Data Protection Act 2023 places serious
+                obligations on every school in India. Non-compliance with
+                children&rsquo;s data rules carries penalties up to ₹200 Crore.
+                Z A R K &amp; Co LLP helps schools across Lucknow and Uttar
+                Pradesh stay compliant.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <div className="mt-9 flex flex-col sm:flex-row gap-3">
                 <a
                   href="#assessment"
-                  className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-blue-700 font-medium hover:bg-blue-50 transition-colors"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--ink-900)] px-6 py-3 text-sm font-medium text-white hover:bg-[color:var(--accent-700)] transition-colors"
                 >
-                  Take the Free Assessment
+                  Take the free assessment
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
                 </a>
                 <a
                   href="#services"
-                  className="inline-flex items-center justify-center rounded-lg border-2 border-white/70 px-8 py-3 text-white font-medium hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center justify-center rounded-full border border-[color:var(--border-strong)] bg-white/70 backdrop-blur px-6 py-3 text-sm font-medium text-[color:var(--ink-900)] hover:border-[color:var(--accent-700)] hover:text-[color:var(--accent-700)] transition-colors"
                 >
-                  Our Services
+                  Our services
                 </a>
               </div>
             </motion.div>
 
             <motion.div
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur shadow-lg"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              className="lg:col-span-5 rounded-3xl border border-[color:var(--border)] bg-white p-6 sm:p-7 shadow-[0_18px_44px_-18px_rgba(11,37,69,0.18)]"
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.6 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              whileHover={reduceMotion ? undefined : { y: -2 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: 'easeOut', delay: 0.1 }}
             >
-              <div className="text-xs font-semibold tracking-wider text-blue-100/80">DPDPA Penalty Schedule</div>
-              <div className="mt-4 space-y-3 text-sm">
+              <div className="eyebrow">DPDPA penalty schedule</div>
+              <div className="mt-5 space-y-3 text-[13.5px]">
                 {[
                   { label: 'Failure to secure student data', amt: '₹250 Cr' },
                   { label: "Children's data violations", amt: '₹200 Cr' },
@@ -269,9 +273,12 @@ export default function DpdpaLanding() {
                   { label: 'Significant Data Fiduciary breach', amt: '₹150 Cr' },
                   { label: 'Other provision breaches', amt: '₹50 Cr' },
                 ].map((row) => (
-                  <div key={row.label} className="flex items-center justify-between border-b border-white/10 pb-3 last:border-b-0 last:pb-0">
-                    <span className="text-blue-100/70 pr-3">{row.label}</span>
-                    <span className="text-rose-200 font-semibold">{row.amt}</span>
+                  <div
+                    key={row.label}
+                    className="flex items-center justify-between border-b border-[color:var(--border)] pb-3 last:border-b-0 last:pb-0"
+                  >
+                    <span className="text-[color:var(--ink-500)] pr-3">{row.label}</span>
+                    <span className="text-[color:var(--accent-700)] font-semibold tabular">{row.amt}</span>
                   </div>
                 ))}
               </div>
@@ -280,7 +287,7 @@ export default function DpdpaLanding() {
         </div>
       </section>
 
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-[color:var(--bg-elevated)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-3xl"
@@ -289,8 +296,8 @@ export default function DpdpaLanding() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            <h2 className="text-3xl font-bold text-slate-900">Why schools are exposed</h2>
-            <p className="mt-4 text-slate-600">
+            <h2 className="display text-3xl sm:text-4xl text-[color:var(--ink-900)]">Why schools are exposed</h2>
+            <p className="mt-4 text-[color:var(--ink-500)]">
               Schools collect and process vast amounts of personal data — from minors. The DPDPA is unambiguous about
               responsibilities and liabilities.
             </p>
@@ -321,16 +328,16 @@ export default function DpdpaLanding() {
             ].map((c, idx) => (
               <motion.div
                 key={c.title}
-                className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-xl border border-[color:var(--border)] bg-white p-6 shadow-sm"
                 initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                 whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.22, ease: 'easeOut', delay: reduceMotion ? 0 : idx * 0.015 }}
                 whileHover={reduceMotion ? undefined : { y: -2 }}
               >
-                <div className="h-10 w-10 rounded-lg bg-blue-50 flex items-center justify-center text-lg">{c.icon}</div>
-                <h3 className="mt-4 font-semibold text-slate-900">{c.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{c.desc}</p>
+                <div className="h-10 w-10 rounded-lg bg-[color:var(--accent-50)] flex items-center justify-center text-lg">{c.icon}</div>
+                <h3 className="mt-4 font-semibold text-[color:var(--ink-900)]">{c.title}</h3>
+                <p className="mt-2 text-sm text-[color:var(--ink-500)]">{c.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -346,8 +353,8 @@ export default function DpdpaLanding() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            <h2 className="text-3xl font-bold text-slate-900">End-to-End DPDPA compliance for schools</h2>
-            <p className="mt-4 text-slate-600">
+            <h2 className="display text-3xl sm:text-4xl text-[color:var(--ink-900)]">End-to-End DPDPA compliance for schools</h2>
+            <p className="mt-4 text-[color:var(--ink-500)]">
               From assessment to implementation, we handle every aspect of your school&apos;s data protection obligations.
             </p>
           </motion.div>
@@ -411,8 +418,8 @@ export default function DpdpaLanding() {
                   type="button"
                   key={s.num}
                   onClick={() => setExpandedService((prev) => (prev === s.id ? null : s.id))}
-                  className={`text-left rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    isHighlighted ? 'border-blue-400' : 'border-slate-200'
+                  className={`text-left rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-200)] ${
+                    isHighlighted ? 'border-[color:var(--accent-200)]' : 'border-[color:var(--border)]'
                   }`}
                   initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                   whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -422,16 +429,16 @@ export default function DpdpaLanding() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <div className="text-xs font-semibold text-blue-700 tracking-wider">{s.num} — SERVICE</div>
-                      <h3 className="mt-3 text-lg font-semibold text-slate-900">{s.title}</h3>
-                      <p className="mt-2 text-sm text-slate-600">{s.desc}</p>
+                      <div className="text-xs font-semibold text-[color:var(--accent-700)] tracking-wider">{s.num} — SERVICE</div>
+                      <h3 className="mt-3 text-lg font-semibold text-[color:var(--ink-900)]">{s.title}</h3>
+                      <p className="mt-2 text-sm text-[color:var(--ink-500)]">{s.desc}</p>
                     </div>
-                    <div className="mt-1 text-slate-400">
+                    <div className="mt-1 text-[color:var(--ink-400)]">
                       {isExpanded ? '−' : '+'}
                     </div>
                   </div>
 
-                  <span className="mt-4 inline-flex items-center rounded-md bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                  <span className="mt-4 inline-flex items-center rounded-md bg-[color:var(--accent-50)] px-3 py-1 text-xs font-semibold text-[color:var(--accent-700)]">
                     {s.tag}
                   </span>
 
@@ -444,11 +451,11 @@ export default function DpdpaLanding() {
                         transition={{ duration: 0.16, ease: 'easeOut' }}
                         className="overflow-hidden"
                       >
-                        <div className="mt-4 text-sm text-slate-700">
+                        <div className="mt-4 text-sm text-[color:var(--ink-700)]">
                           {s.more}
                         </div>
                         {isHighlighted && (
-                          <div className="mt-3 text-xs font-semibold text-blue-700">
+                          <div className="mt-3 text-xs font-semibold text-[color:var(--accent-700)]">
                             Highlighted based on your assessment results
                           </div>
                         )}
@@ -462,7 +469,7 @@ export default function DpdpaLanding() {
         </div>
       </section>
 
-      <section id="assessment" className="py-16 bg-slate-50">
+      <section id="assessment" className="py-16 bg-[color:var(--bg-elevated)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-3xl"
@@ -471,16 +478,16 @@ export default function DpdpaLanding() {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            <h2 className="text-3xl font-bold text-slate-900">Free compliance assessment</h2>
-            <p className="mt-4 text-slate-600">
+            <h2 className="display text-3xl sm:text-4xl text-[color:var(--ink-900)]">Free compliance assessment</h2>
+            <p className="mt-4 text-[color:var(--ink-500)]">
               Answer 11 questions about your current data practices. We&apos;ll analyse your responses and recommend the right compliance services.
             </p>
           </motion.div>
 
-          <div className="mt-10 max-w-3xl rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-            <div className="bg-slate-900 px-6 py-6">
+          <div className="mt-10 max-w-3xl rounded-2xl border border-[color:var(--border)] bg-white shadow-sm overflow-hidden">
+            <div className="bg-[color:var(--ink-900)] px-6 py-6">
               <div className="text-white text-xl font-semibold">School Compliance Assessment</div>
-              <div className="mt-1 text-sm text-blue-100/70">Powered by K Raghav & Associates — takes about 3 minutes</div>
+              <div className="mt-1 text-sm text-blue-100/70">Powered by Z A R K & Co LLP — takes about 3 minutes</div>
               <div className="mt-4 h-2 rounded bg-white/10 overflow-hidden">
                 <div className="h-2 bg-blue-400" style={{ width: `${showResult || isLoadingResult ? 100 : progressPct}%` }} />
               </div>
@@ -499,8 +506,8 @@ export default function DpdpaLanding() {
                     exit={reduceMotion ? undefined : { opacity: 0, x: -6 }}
                     transition={{ duration: 0.12, ease: 'easeOut' }}
                   >
-                    <div className="text-xs font-semibold tracking-wider text-blue-700">Question {currentQ + 1} of {questions.length}</div>
-                    <div className="mt-2 text-lg font-medium text-slate-900">{questions[currentQ].text}</div>
+                    <div className="text-xs font-semibold tracking-wider text-[color:var(--accent-700)]">Question {currentQ + 1} of {questions.length}</div>
+                    <div className="mt-2 text-lg font-medium text-[color:var(--ink-900)]">{questions[currentQ].text}</div>
 
                     <div className="mt-6 space-y-3">
                       {questions[currentQ].options.map((opt, oi) => {
@@ -510,8 +517,8 @@ export default function DpdpaLanding() {
                             key={oi}
                             className={`flex gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${
                               isSelected
-                                ? 'border-blue-500 bg-blue-50'
-                                : 'border-slate-200 bg-white hover:bg-slate-50'
+                                ? 'border-[color:var(--accent-600)] bg-[color:var(--accent-50)]'
+                                : 'border-[color:var(--border)] bg-white hover:bg-[color:var(--bg-elevated)]'
                             }`}
                           >
                             <input
@@ -531,7 +538,7 @@ export default function DpdpaLanding() {
                     <div className="mt-8 flex items-center justify-between">
                       {currentQ > 0 ? (
                         <button
-                          className="rounded-lg border border-slate-200 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                          className="rounded-lg border border-[color:var(--border)] px-4 py-2 text-sm text-[color:var(--ink-700)] hover:bg-[color:var(--bg-elevated)]"
                           onClick={goBack}
                         >
                           ← Back
@@ -540,7 +547,7 @@ export default function DpdpaLanding() {
                         <span />
                       )}
                       <button
-                        className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+                        className="rounded-lg bg-[color:var(--ink-900)] px-5 py-2 text-sm font-semibold text-white hover:bg-[color:var(--accent-700)] disabled:opacity-50"
                         onClick={goNext}
                         disabled={!canNext}
                       >
@@ -553,8 +560,8 @@ export default function DpdpaLanding() {
 
               {isLoadingResult && (
                 <div className="py-12 text-center">
-                  <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-slate-200 border-t-blue-600" />
-                  <p className="mt-4 text-sm text-slate-600">Analysing your responses against DPDPA requirements...</p>
+                  <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-[color:var(--border)] border-t-blue-600" />
+                  <p className="mt-4 text-sm text-[color:var(--ink-500)]">Analysing your responses against DPDPA requirements...</p>
                 </div>
               )}
 
@@ -582,8 +589,8 @@ export default function DpdpaLanding() {
                         {risk.risk}
                       </div>
                       <div>
-                        <div className="font-semibold text-slate-900">Risk Level: {risk.risk} (Score: {risk.pct}%)</div>
-                        <div className="mt-1 text-sm text-slate-600">
+                        <div className="font-semibold text-[color:var(--ink-900)]">Risk Level: {risk.risk} (Score: {risk.pct}%)</div>
+                        <div className="mt-1 text-sm text-[color:var(--ink-500)]">
                           {risk.risk === 'HIGH'
                             ? 'Your school has significant DPDPA compliance gaps. Immediate action is recommended.'
                             : risk.risk === 'MEDIUM'
@@ -594,23 +601,23 @@ export default function DpdpaLanding() {
                     </div>
                   </div>
 
-                  <div className="mt-8 text-xs font-semibold tracking-wider text-slate-700">RECOMMENDED SERVICES</div>
+                  <div className="mt-8 text-xs font-semibold tracking-wider text-[color:var(--ink-700)]">RECOMMENDED SERVICES</div>
                   <div className="mt-3 space-y-2">
                     {risk.recs.slice(0, 6).map((r, idx) => (
-                      <div key={idx} className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-800">
+                      <div key={idx} className="rounded-xl bg-[color:var(--bg-elevated)] border border-[color:var(--border)] px-4 py-3 text-sm text-slate-800">
                         {r}
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-8 rounded-2xl bg-slate-900 p-6 text-center">
+                  <div className="mt-8 rounded-2xl bg-[color:var(--ink-900)] p-6 text-center">
                     <div className="text-white text-lg font-semibold">Get a Detailed Compliance Report</div>
                     <div className="mt-2 text-sm text-blue-100/70">
                       Our experts will review your responses and deliver a personalised DPDPA compliance roadmap.
                     </div>
                     <a
                       href="#contact"
-                      className="mt-5 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
+                      className="mt-5 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3 text-[color:var(--accent-700)] font-semibold hover:bg-[color:var(--accent-50)] transition-colors"
                       onClick={prefillContact}
                     >
                       Contact Our Team →
@@ -627,11 +634,12 @@ export default function DpdpaLanding() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">Contact our team</h2>
-              <p className="mt-4 text-slate-600">
+              <h2 className="display text-3xl sm:text-4xl text-[color:var(--ink-900)]">Contact our team</h2>
+              <p className="mt-4 text-[color:var(--ink-500)]">
                 Our DPDPA specialists work with schools across Lucknow, Kanpur, Varanasi and Uttar Pradesh. Share your context and we&apos;ll recommend a practical compliance roadmap.
               </p>
-              <div className="mt-6 space-y-3 text-sm text-slate-700">
+
+              <div className="mt-6 space-y-3 text-sm text-[color:var(--ink-700)]">
                 <div><span className="font-semibold">Email:</span> raghav@kraca.in</div>
                 <div><span className="font-semibold">Phone:</span> +91-9936104447</div>
                 <div>
@@ -641,33 +649,33 @@ export default function DpdpaLanding() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 shadow-sm">
               <form id="contact-form" action="https://formspree.io/f/xaqvebpb" method="POST" className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600">Your Name</label>
-                    <input id="cf-name" name="name" required placeholder="Principal / Admin name" className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label className="block text-xs font-semibold text-[color:var(--ink-500)]">Your Name</label>
+                    <input id="cf-name" name="name" required placeholder="Principal / Admin name" className="mt-2 w-full rounded-lg border border-[color:var(--border)] bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--accent-200)]" />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600">School Name</label>
-                    <input id="cf-school" name="school" placeholder="School / Institution name" className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label className="block text-xs font-semibold text-[color:var(--ink-500)]">School Name</label>
+                    <input id="cf-school" name="school" placeholder="School / Institution name" className="mt-2 w-full rounded-lg border border-[color:var(--border)] bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--accent-200)]" />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600">Email Address</label>
-                    <input id="cf-email" name="email" type="email" required placeholder="your@school.edu.in" className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label className="block text-xs font-semibold text-[color:var(--ink-500)]">Email Address</label>
+                    <input id="cf-email" name="email" type="email" required placeholder="your@school.edu.in" className="mt-2 w-full rounded-lg border border-[color:var(--border)] bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--accent-200)]" />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600">Phone Number</label>
-                    <input id="cf-phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label className="block text-xs font-semibold text-[color:var(--ink-500)]">Phone Number</label>
+                    <input id="cf-phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" className="mt-2 w-full rounded-lg border border-[color:var(--border)] bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--accent-200)]" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600">Service of Interest</label>
-                  <select id="cf-service" name="service" defaultValue="" className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                  <label className="block text-xs font-semibold text-[color:var(--ink-500)]">Service of Interest</label>
+                  <select id="cf-service" name="service" defaultValue="" className="mt-2 w-full rounded-lg border border-[color:var(--border)] bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--accent-200)]">
                     <option value="">Select a service</option>
                     <option>DPDPA Gap Assessment</option>
                     <option>Consent Management Platform</option>
@@ -680,15 +688,15 @@ export default function DpdpaLanding() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600">Message</label>
-                  <textarea id="cf-message" name="message" placeholder="Tell us about your school and any specific compliance concerns..." className="mt-2 min-h-[110px] w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500" />
+                  <label className="block text-xs font-semibold text-[color:var(--ink-500)]">Message</label>
+                  <textarea id="cf-message" name="message" placeholder="Tell us about your school and any specific compliance concerns..." className="mt-2 min-h-[110px] w-full rounded-lg border border-[color:var(--border)] bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[color:var(--accent-200)]" />
                 </div>
 
                 <input type="hidden" name="risk_level" id="cf-risk" />
-                <input type="hidden" name="_subject" value="New DPDPA Compliance Enquiry — K Raghav & Associates" />
+                <input type="hidden" name="_subject" value="New DPDPA Compliance Enquiry — Z A R K & Co LLP" />
                 <input type="hidden" name="_next" value="" />
 
-                <button type="submit" className="w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+                <button type="submit" className="w-full rounded-lg bg-[color:var(--ink-900)] px-4 py-3 text-sm font-semibold text-white hover:bg-[color:var(--accent-700)]">
                   Send Message
                 </button>
               </form>
